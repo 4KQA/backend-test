@@ -1,4 +1,4 @@
-# AKQA Backend task for National Earthquake Research Department
+# AKQA Backend Task for National Earthquake Research Department
 
 ## Problem Description
 

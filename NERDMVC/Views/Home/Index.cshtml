@@ -1,0 +1,270 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="flex-container">
+    <div class="flex-child">
+        <div>
+            <table class="DataTable">
+                <thead>
+                <tr>
+	                <th>ID</th>
+	                <th>First Name</th>
+	                <th>Last Name</th>
+	                <th>Gender</th>
+	                <th>Location</th>
+	                <th>Alive</th>
+                </tr>
+                </thead>
+                <tbody id="result">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="flex-child">
+        <h3>Find Relative</h3>
+        <form id="GetRelatives">
+            <table>
+                <tbody>
+                <tr>
+                    <th colspan="2">Person Details</th>
+                </tr>
+                <tr>
+                    <td>Firstname:</td>
+                    <td>
+                        <input name="firstname" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lastname:</td>
+                    <td>
+                        <input name="lastname" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input class="btn btn-primary" type="submit" value="Submit"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div class="flex-child">
+        <h3>Add/Edit Citizen</h3>
+        <form id="SurvivorChange">
+            <table>
+                <tbody>
+                <tr>
+                    <th colspan="2">Person Details</th>
+                </tr>
+                <tr>
+                    <td>ID (0 if they are new):</td>
+                    <td>
+                        <input name="id" type="text" placeholder="0"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input name="firstName" type="text" placeholder="John"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input name="lastName" type="text" placeholder="Dickinson"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input name="gender" type="text" placeholder="Male"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Latitude:</td>
+                    <td>
+                        <input name="latitude" type="text" placeholder="-7.3058984"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Longitude:</td>
+                    <td>
+                        <input name="longitude" type="text" placeholder="111.9149875"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Is the person alive:</td>
+                    <td>
+                        <input name="isAlive" type="text" placeholder="true/false"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input class="btn btn-primary" type="submit" value="Submit"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<btn class="btn btn-primary" id="GetAllSurvivors">Get All Survivors</btn>
+<h6></h6>
+
+<script>
+$(document).ready(function()
+{
+	// Get Citizens Relatives
+	$('#GetRelatives').submit(function(e)
+	{
+		e.preventDefault();
+		var firstname = $('input[name="firstname"]').val();
+		var lastname = $('input[name="lastname"]').val();
+		var url = `@Url.Action("GetSurvivor", "Survivor")`;
+		$.ajax(
+		{
+			url: url,
+			type: 'GET',
+			data:
+			{
+				firstname: firstname,
+				lastname: lastname
+			},
+			dataType: 'json',
+			success: function(data)
+			{
+				data = jQuery.parseJSON(JSON.stringify(data));
+				if(data.length > 0)
+				{
+					$('#result').empty();
+					$.each(data, function(i, item)
+					{
+						$('#result').append(
+							`<tr>
+							  <td>${item.id}</td>
+							  <td>${item.firstName}</td>
+							  <td>${item.lastName}</td>
+							  <td>${item.gender}</td>
+							  <td>${item.latitude}, ${item.longitude}</td>
+							  <td>${item.isAlive}</td>
+                        </tr>`
+						);
+					});
+					return true;
+				}
+				else
+				{
+					$('#result').empty();
+					$('#result').append(
+						`<tr>
+                          <td colspan="5">No relatives found</td>
+                        </tr>`
+					);
+				}
+			},
+		});
+	});
+
+	// Get all survivors
+	$('#GetAllSurvivors').click(function(e)
+	{
+		e.preventDefault();
+		var url = `@Url.Action("GetAllSurvivorData", "Survivor")`;
+		$.ajax(
+		{
+			url: url,
+			type: 'GET',
+			dataType: 'json',
+			success: function(data)
+			{
+				data = jQuery.parseJSON(JSON.stringify(data));
+				if(data.length > 0)
+				{
+					$('#result').empty();
+					$.each(data, function(i, item)
+					{
+						$('#result').append(
+							`<tr>
+							  <td>${item.id}</td>
+                              <td>${item.firstName}</td>
+                              <td>${item.lastName}</td>
+                              <td>${item.gender}</td>
+                              <td>${item.latitude}, ${item.longitude}</td>
+                              <td>${item.isAlive}</td>
+                            </tr>`
+						);
+					});
+					return true;
+				}
+				else
+				{
+					$('#result').empty();
+					$('#result').append(
+						`<tr>
+                              <td colspan="5">No relatives found</td>
+                            </tr>`
+					);
+				}
+			},
+		});
+	});
+	
+	// Add/Edit Citizen
+
+	$('#SurvivorChange').submit(function(e)
+	{
+		e.preventDefault();
+		var survivor = {};
+		survivor.id = $('input[name="id"]').val();
+		survivor.firstName = $('input[name="firstName"]').val();
+		survivor.lastName = $('input[name="lastName"]').val();
+		survivor.gender = $('input[name="gender"]').val();
+		survivor.latitude = parseFloat($('input[name="latitude"]').val());
+		survivor.longitude = parseFloat($('input[name="longitude"]').val());
+		survivor.isAlive = $('input[name="isAlive"]').val();
+
+		var url = `@Url.Action("CreateEditSurvivor", "Survivor")`;
+		$.ajax(
+		{
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(survivor),
+			success: function(data)
+			{
+				alert("Data has been added successfully.");
+				$('#result').append(
+						`<tr>
+						  <td>${survivor.firstName}</td>
+						  <td>${survivor.lastName}</td>
+						  <td>${survivor.gender}</td>
+						  <td>${survivor.latitude}, ${survivor.longitude}</td>
+						  <td>${survivor.isAlive}</td>
+						</tr>`
+						);
+			},
+			error: function(data)
+			{
+				console.log(JSON.stringify(survivor));
+				alert("Error while inserting data");
+			}
+		});
+	});
+	// Survivor Procentage
+	$.ajax({
+                    type: "GET",
+                    url: '@Url.Action("SurvivorsAlive", "Survivor")',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "text",
+                    success: function (r) {
+                       $("h6").text(r.replace('"', "").replace('"', ""));
+                    }
+                });
+});
+</script>

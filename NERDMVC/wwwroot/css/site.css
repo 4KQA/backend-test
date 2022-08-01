@@ -1,0 +1,55 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+table.DataTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: .5px;
+  border-color: #000000;
+  border-style: solid;
+  color: #000000;
+}
+
+table.DataTable td, table.DataTable th {
+  border-width: .5px;
+  border-color: #000000;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.DataTable thead {
+  background-color: #70e7ff;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+}
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+.flex-child:last-child {
+  margin-left: 20px;
+} 
