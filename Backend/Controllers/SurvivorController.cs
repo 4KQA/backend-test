@@ -19,6 +19,26 @@ namespace Udlejnings_API.Controllers
             _repos = reposContext ?? throw new ArgumentNullException(nameof(reposContext));
         }
 
+        [HttpGet("stats/")]
+        public IActionResult GetStats(){
+            var _survivorsStats = _repos.GetStats();
+
+            if (_survivorsStats != null)
+                return Ok(_survivorsStats);
+            else 
+                return BadRequest();
+        }
+
+        [HttpGet("search/{lastname}")]
+        public IActionResult SearchLastname(string lastname){
+            var _survivorsStats = _repos.SearchByLastname(lastname);
+
+            if (_survivorsStats != null)
+                return Ok(_survivorsStats);
+            else 
+                return NotFound();
+        }
+
         [HttpGet]
         public IActionResult GetSurvivors(){
             var _survivors = _repos.GetSurvivors();
@@ -26,32 +46,12 @@ namespace Udlejnings_API.Controllers
             if (_survivors != null)
                 return Ok(_survivors);
             else 
-                return NotFound();
+                return BadRequest();
         }
 
         [HttpGet("{id}")]
         public IActionResult GetSurvivor(int id){
             var _survivors = _repos.GetSurvivor(id);
-
-            if (_survivors != null)
-                return Ok(_survivors);
-            else 
-                return NotFound();
-        }
-
-        [HttpGet("hemisphere/{hemisphere}/{id}")]
-        public IActionResult GetSurvivorByHemisphere(string hemisphere,int id){
-            var _survivors = _repos.GetSurvivorByHemisphere(hemisphere,id);
-
-            if (_survivors != null)
-                return Ok(_survivors);
-            else 
-                return NotFound();
-        }
-
-        [HttpGet("hemisphere/{hemisphere}")]
-        public IActionResult GetSurvivorsByHemisphere(string hemisphere){
-            var _survivors = _repos.GetSurvivorsByHemisphere(hemisphere);
 
             if (_survivors != null)
                 return Ok(_survivors);
@@ -73,10 +73,12 @@ namespace Udlejnings_API.Controllers
         public IActionResult UpdateSurvivor(int id,[FromBody] Survivor input){
             var _survivors = _repos.UpdateSurvivor(id, input);
 
-            if (_survivors != false)
+            if (_survivors != null)
                 return Ok(_survivors);
-            else 
+            else if (_repos.Exists(id) == false)
                 return NotFound();
+            else
+                return BadRequest("Invalid transfer. the world is in two.");
         }
 
         [HttpPost]
@@ -88,5 +90,7 @@ namespace Udlejnings_API.Controllers
         
             return CreatedAtAction("GetRent", new { id = _survivor.Survivor_ID }, _survivor);
         }
+
+
     }
 }

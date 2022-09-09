@@ -1,5 +1,6 @@
 using Context;
 using Models;
+using Dto;
 
 namespace Repositories{
     public class SurvivorsRepos : ISurvivorRepos{
@@ -15,15 +16,9 @@ namespace Repositories{
             return _Context.Survivors.FirstOrDefault(x => x.Survivor_ID == survivorID);
         }
 
-        // extra
-        public IEnumerable<Survivor> GetSurvivorsByHemisphere(string hemisphere){
-            throw new NotImplementedException();
+        public Survivor SearchByLastname(string lastname){
+            return _Context.Survivors.FirstOrDefault(x => x.lastName.Contains(lastname));
         }
-        public Survivor GetSurvivorByHemisphere(string hemisphere, int survivorID){
-            throw new NotImplementedException();
-        }
-        // extra end
-
 
         // cud
         // mangler validation af data input
@@ -42,9 +37,12 @@ namespace Repositories{
             _Context.SaveChanges();
             return _survivor;
         }
-        public bool UpdateSurvivor(int survivorID, Survivor input){
+        public Survivor UpdateSurvivor(int survivorID, Survivor input){
             Survivor _survivor = _Context.Survivors.FirstOrDefault(x => x.Survivor_ID == survivorID);
-            if(_survivor == null){ return false; }
+            if(_survivor == null){ return null; }
+
+            if (CheckValidMove(_survivor.latitude, input.latitude) == false)
+                return null;
             
             _survivor.firstName = input.firstName;
             _survivor.lastName = input.lastName;
@@ -55,7 +53,7 @@ namespace Repositories{
             _survivor.alive = input.alive;
 
             _Context.SaveChanges();
-            return true;
+            return _survivor;
         }
 
         public bool DeleteSurvivor(int survivorID){
@@ -67,7 +65,24 @@ namespace Repositories{
             return true;
         }
 
+        public Stats GetStats(){
+            int _Alive_Survivors = _Context.Survivors.Count(x => x.alive == true);
+            int _Dead_Survivors = _Context.Survivors.Count(x => x.alive == false);
+            Stats _stats = new Stats{
+                Ammount_Survivors = _Context.Survivors.Count(),
+                Alive_Survivors = _Alive_Survivors,
+                Dead_Survivors = _Dead_Survivors,
+                Precentage_Alive_Survivors = ( 100 / _Context.Survivors.Count() ) * _Alive_Survivors
+            };
+            return _stats;
+        }
 
+        public bool CheckValidMove(double currentLatitude,double Newlatitude){
+            if(currentLatitude > 0 && Newlatitude < 0 ||
+               currentLatitude < 0 && Newlatitude > 0)
+                return false;
+            return true;
+        }
 
         public bool Exists(int survivorID){
             return _Context.Survivors.Any(x => x.Survivor_ID == survivorID);
