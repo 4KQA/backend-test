@@ -21,7 +21,7 @@ namespace AKQA_Backend.Services.PeopleService
 
         }
 
-        public void UpdatePerson(UpdatePeople model)
+        public void UpdatePerson(int id, UpdatePeople model)
         {
 
         }
@@ -36,7 +36,7 @@ namespace AKQA_Backend.Services.PeopleService
 
         }
 
-        public void GetPercentage()
+        public void GetPercentage(People people)
         {
 
         }

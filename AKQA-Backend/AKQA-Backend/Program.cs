@@ -1,4 +1,5 @@
 using AKQA_Backend.Helpers;
+using AKQA_Backend.Services.PeopleService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +9,15 @@ services.AddDbContext<DatabaseContext>();
 
 // Add services to the container.
 
+services.AddCors();
 services.AddControllers();
+
+services.AddAutoMapper(typeof(Program));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
+
+services.AddScoped<IPeopleService, PeopleService>();
 
 var app = builder.Build();
 
@@ -25,6 +31,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors(x => x
+       .AllowAnyOrigin()
+       .AllowAnyMethod()
+       .AllowAnyHeader());
 
 app.MapControllers();
 
