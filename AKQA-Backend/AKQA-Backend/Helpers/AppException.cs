@@ -2,6 +2,7 @@
 
 namespace AKQA_Backend.Helpers
 {
+    //To create custom exceoptions that is being handled in people services
     public class AppException : Exception
     {
         public AppException() : base() { }

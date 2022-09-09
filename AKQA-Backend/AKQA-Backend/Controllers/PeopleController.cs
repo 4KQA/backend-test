@@ -18,7 +18,6 @@ namespace AKQA_Backend.Controllers
             this.service = peopleService;
             this.mapper = mapper;
         }
-
         [HttpPost("Add person")]
         public IActionResult CreatePerson(CreatePeople model)
         {

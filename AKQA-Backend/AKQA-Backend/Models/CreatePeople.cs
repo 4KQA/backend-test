@@ -1,5 +1,6 @@
 ﻿namespace AKQA_Backend.Models
 {
+    //mapping for create
     public class CreatePeople
     {
         public string FirstName { get; set; }

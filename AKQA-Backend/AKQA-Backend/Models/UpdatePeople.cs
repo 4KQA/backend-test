@@ -1,5 +1,6 @@
 ﻿namespace AKQA_Backend.Models
 {
+    //mapping for update
     public class UpdatePeople
     {
         public int Age { get; set; }

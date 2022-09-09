@@ -44,6 +44,7 @@ app.UseCors(x => x
        .AllowAnyMethod()
        .AllowAnyHeader());
 
+//call my helper
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
