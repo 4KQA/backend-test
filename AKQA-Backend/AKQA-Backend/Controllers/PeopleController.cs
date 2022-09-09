@@ -33,7 +33,7 @@ namespace AKQA_Backend.Controllers
             return Ok(people);
         }
 
-        [HttpGet("Get person by LastName/{LastName}")]
+        [HttpGet("Get person by LastName")]
         public IActionResult GetPersonByLastName(string lastname)
         {
             var person = service.GetPersonByLastName(lastname);
