@@ -19,7 +19,7 @@ namespace Context
                 Survivors.Add(new Survivor{
                     Survivor_ID = i,
                     firstName = "tester" + i,
-                    lastName = "lastname" + i,
+                    lastName = "lastname" + rand.Next(1,5),
                     age = rand.Next(20,80),
                     gender = genders[rand.Next(genders.Count())],
                     longitude = GetRandomNumber(-180,180),
