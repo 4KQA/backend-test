@@ -48,9 +48,9 @@ namespace AKQA_Backend.Controllers
         }
 
         [HttpGet("Get procentage of survivors")]
-        public IActionResult GetPercentage(People people)
+        public IActionResult GetPercentage()
         {
-            var Procentage = service.GetPercentage(people);
+            var Procentage = service.GetPercentage();
             return Ok(Procentage);
         }
 

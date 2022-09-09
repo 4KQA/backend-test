@@ -18,27 +18,101 @@ namespace AKQA_Backend.Services.PeopleService
 
         public void CreatePerson(CreatePeople model)
         {
+            var person = mapper.Map<People>(model);
+
+            bool CheckLatPlus = model.Latitude > 0;
+            bool CheckLonPlus = model.Longitude > 90;
+            bool checkLonNorth = model.Latitude > -90;
+
+            bool CheckLatMinus = model.Latitude < 0;
+            bool CheckLonMinus = model.Longitude < 90;
+            bool checkLonSouth = model.Latitude < -90;
+
+            if (CheckLatPlus == true && CheckLonPlus == true || checkLonNorth == true)
+            {
+
+                context.People.Add(person);
+                context.SaveChanges();
+            }
+            else if (CheckLatMinus == true && CheckLonMinus == true || checkLonSouth == true)
+            {
+                context.People.Add(person);
+                context.SaveChanges();
+            }
+            else
+                throw new AppException("sorry the data given diden't make sense");
+
 
         }
 
         public void UpdatePerson(int id, UpdatePeople model)
         {
+            var People = getPersonById(id);
+            bool CheckLatPlus = model.Latitude > 0;
+            bool CheckLonPlus = model.Longitude > 90;
+            bool checkLonNorth = model.Latitude > -90;
 
+            bool CheckLatMinus = model.Latitude < 0;
+            bool CheckLonMinus = model.Longitude < 90;
+            bool checkLonSouth = model.Latitude < -90;
+
+            if (CheckLatPlus == true && CheckLonPlus == true || checkLonNorth == true)
+                if (model.Latitude > 0 && model.Longitude > 90 || model.Longitude > -90)
+                {
+                    mapper.Map(model, People); ;
+                    context.People.Update(People);
+                    context.SaveChanges();
+                }
+                else
+                    throw new AppException("You cant cross, there is a big gap in between");
+            else if (CheckLatMinus == true && CheckLonMinus == true || checkLonSouth == true)
+                if (model.Latitude < 0 && model.Longitude < 90 || model.Longitude < -90)
+                {
+                    if(!string.IsNullOrEmpty(model.Flag))
+                        People.Flag = model.Flag;
+                    if(model.Age != null)
+                        People.Age = model.Age;
+                    mapper.Map(model, People); ;
+                    context.People.Update(People);
+                    context.SaveChanges();
+                }
+                else
+                    throw new AppException("You cant cross, there is a big gap in between");
+            else
+                throw new AppException("sorry the data given diden't make sense");
+
+        }
+
+        private People getPersonById(int id)
+        {
+            var person = context.People.Find(id);
+            if (person == null)
+                throw new KeyNotFoundException("Person not found");
+            return person;
         }
 
         public IEnumerable<People> GetAllPeople()
         {
-
+            return context.People;
         }
 
         public People GetPersonByLastName(string lastname)
         {
-
+            var person = context.People.Find(lastname);
+            if (person == null) 
+                throw new KeyNotFoundException("Person not found");
+            return person;
         }
 
-        public void GetPercentage(People people)
+        public string GetPercentage()
         {
+            var resultDead = context.People.Where(X => X.Flag.Contains("dead"));
+            var resultAlive = context.People.Where(X => X.Flag.Contains("alive"));
+            int totalPeople = resultDead.ToList().Count + resultAlive.ToList().Count;
 
+            double PercentageOfHumans = (resultDead.ToList().Count / totalPeople) * 100;
+
+            return resultAlive.ToList().Count() + " is alive today out of: " + totalPeople + " which is " + PercentageOfHumans + "%";
         }
     }
 }
