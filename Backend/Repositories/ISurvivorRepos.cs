@@ -8,6 +8,7 @@ namespace Repositories{
 
     public interface ISurvivorRepos : BaseInterface{
         public IEnumerable<Survivor> GetSurvivors();
+        public IEnumerable<Survivor> Relitives(Survivor survivor);
         public Survivor GetSurvivor(int SurvivorID);
         public Survivor SearchByLastname(string lastName);
         public bool CheckValidMove(double currentLatitude,double Newlatitude);

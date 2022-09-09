@@ -20,6 +20,10 @@ namespace Repositories{
             return _Context.Survivors.FirstOrDefault(x => x.lastName.Contains(lastname));
         }
 
+        public IEnumerable<Survivor> Relitives(Survivor survivor){
+            return _Context.Survivors.Where(x=> x.lastName == survivor.lastName && x.firstName != survivor.firstName).ToList();
+        }
+
         // cud
         // mangler validation af data input
         public Survivor CreateSurvivor(Survivor input){

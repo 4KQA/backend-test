@@ -59,6 +59,17 @@ namespace Udlejnings_API.Controllers
                 return NotFound();
         }
 
+        [HttpGet("relitives/{id}")]
+        public IActionResult GetSurvivorRelitives(int id){
+            var _survivor = _repos.GetSurvivor(id);
+            var _survivorRelitives = _repos.Relitives(_survivor);
+
+            if (_survivorRelitives != null)
+                return Ok(_survivorRelitives);
+            else 
+                return NotFound();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteSurvivor(int id){
             var _survivors = _repos.DeleteSurvivor(id);
