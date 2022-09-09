@@ -1,0 +1,66 @@
+:root {
+    --Test: #7f97d5;
+    --Borders: #464646;
+    --BoxBorders: #161616;
+    --BoxBG: #363636;
+    --BG: #2e2e2e;
+    --TextColor: #cacbcc;
+    --SmallBox: #525252;
+  }
+
+  body{
+    background-color: var(--BG);
+    font-family: 'Bahnschrift', sans-serif;
+    color: var(--TextColor);
+}
+
+#WorldMap {
+    height: 350px;
+    border: 1px solid var(--BoxBorders);
+  }
+  
+  .container{
+      margin-top: 2%;
+      margin-bottom: 5%;
+  }
+
+  #Box{
+    border: 1px solid var(--BoxBorders);
+    margin-bottom: 15px;
+    padding: 6px;
+    border-radius: 10px;
+    background-color: var(--BoxBG);
+}
+
+
+.leaflet-container{
+    background: #161616; 
+    border-radius: 10px;
+  }
+
+  .BlockStyle{
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 15px;
+    background-color: var(--BoxBG);
+    border: 0px;
+    width: auto;
+    height: 25px;
+    box-shadow: 1px 1px 10px var(--BoxBorders);
+    color: var(--TextColor);
+  }
+
+  .inputfield{
+    padding-left: 10px;
+    margin-right: 10px;
+    border-radius: 15px;
+    background-color: var(--BoxBG);
+    border: 0px;
+    width: auto;
+    height: 25px;
+    box-shadow: 1px 1px 10px var(--BoxBorders);
+    color: var(--TextColor);
+  }
+  img.huechange { filter: hue-rotate(120deg); }
