@@ -1,5 +1,6 @@
 using AKQA_Backend.Helpers;
 using AKQA_Backend.Services.PeopleService;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,12 @@ services.AddScoped<IPeopleService, PeopleService>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    dataContext.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -36,6 +43,8 @@ app.UseCors(x => x
        .AllowAnyOrigin()
        .AllowAnyMethod()
        .AllowAnyHeader());
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 
