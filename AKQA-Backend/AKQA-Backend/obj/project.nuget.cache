@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HJvvyJmrANfv1DpVYt5q5p7dc4ZIGvQI2VZqofMdN5xTPUJQAl34Lhqhjj1TxlIBG/UfpInCv2WrGDIkepURgg==",
+  "dgSpecHash": "7osJccRAayXNt6a/LSdUEDuqPyL+1HwQuEM+iRxRJ7NUvwndgBJYsJhpl/7XuFCgm5AlJjA3fphTkIJAHDT2Uw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nicol\\source\\repos\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj",
+  "projectFilePath": "D:\\github repository\\backend-test\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nicol\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\nicol\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

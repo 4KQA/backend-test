@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nicol\\source\\repos\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj": {}
+    "D:\\github repository\\backend-test\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nicol\\source\\repos\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj": {
+    "D:\\github repository\\backend-test\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nicol\\source\\repos\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj",
+        "projectUniqueName": "D:\\github repository\\backend-test\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj",
         "projectName": "AKQA-Backend",
-        "projectPath": "C:\\Users\\nicol\\source\\repos\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj",
+        "projectPath": "D:\\github repository\\backend-test\\AKQA-Backend\\AKQA-Backend\\AKQA-Backend.csproj",
         "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nicol\\source\\repos\\AKQA-Backend\\AKQA-Backend\\obj\\",
+        "outputPath": "D:\\github repository\\backend-test\\AKQA-Backend\\AKQA-Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
