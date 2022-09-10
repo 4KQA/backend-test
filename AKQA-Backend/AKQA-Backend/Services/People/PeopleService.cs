@@ -117,9 +117,13 @@ namespace AKQA_Backend.Services.PeopleService
             return context.People;
         }
         //get person by lastname
-        public People GetPersonByLastName(string lastname)
+        public IEnumerable<People> GetPersonByLastName(string lastname)
         {
-            return context.People.FirstOrDefault(x => x.LastName.Contains(lastname));
+            var results = GetAllPeople();
+
+
+
+            return results.Where(x => x.LastName == lastname);
         }
 
         //get percentage of people alive

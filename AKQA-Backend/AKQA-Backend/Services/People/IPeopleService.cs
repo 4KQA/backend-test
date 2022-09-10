@@ -8,7 +8,7 @@ namespace AKQA_Backend.Services.PeopleService
         void CreatePerson(CreatePeople model);
         void UpdatePerson(int id, UpdatePeople model);
         IEnumerable<People> GetAllPeople();
-        People GetPersonByLastName(string lastname);
+        IEnumerable<People> GetPersonByLastName(string lastname);
         string GetPercentage();
     }
 }
