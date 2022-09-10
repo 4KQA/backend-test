@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nansy\\source\\repos\\BackendTest-AKQA\\BackendTest-AKQA\\BackendTest-AKQA.csproj": {}
+    "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nansy\\source\\repos\\BackendTest-AKQA\\BackendTest-AKQA\\BackendTest-AKQA.csproj": {
+    "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nansy\\source\\repos\\BackendTest-AKQA\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
+        "projectUniqueName": "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
         "projectName": "BackendTest-AKQA",
-        "projectPath": "C:\\Users\\Nansy\\source\\repos\\BackendTest-AKQA\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
+        "projectPath": "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
         "packagesPath": "C:\\Users\\Nansy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nansy\\source\\repos\\BackendTest-AKQA\\BackendTest-AKQA\\obj\\",
+        "outputPath": "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nansy\\AppData\\Roaming\\NuGet\\NuGet.Config",
