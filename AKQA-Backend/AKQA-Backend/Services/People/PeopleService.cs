@@ -53,11 +53,11 @@ namespace AKQA_Backend.Services.PeopleService
             var People = getPersonById(id);
             bool CheckLatPlus = People.Latitude > 0;
             bool CheckLonPlus = People.Longitude > 90;
-            bool checkLonNorth = People.Latitude < -90;
+            bool checkLonNorth = People.Longitude < -90;
 
             bool CheckLatMinus = People.Latitude < 0;
             bool CheckLonMinus = People.Longitude < 90;
-            bool checkLonSouth = People.Latitude > -90;
+            bool checkLonSouth = People.Longitude > -90;
 
             //if person is to the north part
             if (CheckLatPlus == true && CheckLonPlus == true || CheckLatPlus == true && checkLonNorth == true)
@@ -120,10 +120,7 @@ namespace AKQA_Backend.Services.PeopleService
         public IEnumerable<People> GetPersonByLastName(string lastname)
         {
             var results = GetAllPeople();
-
-
-
-            return results.Where(x => x.LastName == lastname);
+            return results.Where(x => x.LastName.ToLower() == lastname.ToLower());
         }
 
         //get percentage of people alive
