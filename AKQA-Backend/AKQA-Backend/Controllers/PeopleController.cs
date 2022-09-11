@@ -1,5 +1,4 @@
-﻿using AKQA_Backend.Entities;
-using AKQA_Backend.Models;
+﻿using AKQA_Backend.Models;
 using AKQA_Backend.Services.PeopleService;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -40,10 +39,10 @@ namespace AKQA_Backend.Controllers
         }
 
         [HttpPut("Update your location/{id}")]
-        public IActionResult UpdatePerson(int id,UpdatePeople model)
+        public IActionResult UpdatePerson(int id, UpdatePeople model)
         {
             service.UpdatePerson(id, model);
-            return Ok(new {message = "Person has been updated"});
+            return Ok(new { message = "Person has been updated" });
         }
 
         [HttpGet("Get procentage of survivors")]

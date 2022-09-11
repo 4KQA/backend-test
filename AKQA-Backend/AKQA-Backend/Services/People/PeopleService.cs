@@ -2,7 +2,6 @@
 using AKQA_Backend.Helpers;
 using AKQA_Backend.Models;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 
 namespace AKQA_Backend.Services.PeopleService
 {
@@ -32,25 +31,35 @@ namespace AKQA_Backend.Services.PeopleService
 
             //if person is to the north part
             if (CheckLatPlus == true && CheckLonPlus == true || CheckLatPlus == true && checkLonNorth == true)
-            { 
-                context.People.Add(person);
+            {
+                //check if flag is dead or alive for percentage calculation
+                if (model.Flag.ToLower() == "alive" || model.Flag.ToLower() == "dead")
+                    context.People.Add(person);
+                else
+                    throw new AppException("Sorry that flag is not recognized please use alive/dead instead");
+
                 context.SaveChanges();
             }
             //if personn is to the south part
             else if (CheckLatMinus == true && CheckLonMinus == true || CheckLatMinus == true && checkLonSouth == true)
             {
-                context.People.Add(person);
+                //check if flag is dead or alive for percentage calculation
+                if (model.Flag.ToLower() == "alive" || model.Flag.ToLower() == "dead")
+                    context.People.Add(person);
+                else
+                    throw new AppException("Sorry that flag is not recognized please use alive/dead instead");
+
                 context.SaveChanges();
             }
             //if there has been a mix up og lat and long cods
-            else 
+            else
                 throw new AppException("sorry thats not on the same side ps remember the gap");
         }
 
         public void UpdatePerson(int id, UpdatePeople model)
         {
             //check if the person the is being updated is within the parameters
-            var People = getPersonById(id);
+            var People = GetPersonById(id);
             bool CheckLatPlus = People.Latitude > 0;
             bool CheckLonPlus = People.Longitude > 90;
             bool checkLonNorth = People.Longitude < -90;
@@ -70,8 +79,12 @@ namespace AKQA_Backend.Services.PeopleService
                     if (model.Age != null)
                         People.Age = model.Age;
                     mapper.Map(model, People);
+                    //check if flag is dead or alive for percentage calculation
+                    if (model.Flag.ToLower() == "alive" || model.Flag.ToLower() == "dead")
+                        context.People.Update(People);
+                    else
+                        throw new AppException("Sorry that flag is not recognized please use alive/dead instead");
                     //push updates to person
-                    context.People.Update(People);
                     context.SaveChanges();
                 }
                 //throw error if person tries to move sides
@@ -84,13 +97,17 @@ namespace AKQA_Backend.Services.PeopleService
                 if (model.Latitude < 0 && model.Longitude < 90 || model.Latitude < 0 && model.Longitude > -90)
                 {
                     //if flag or age has not change keep old value
-                    if(!string.IsNullOrEmpty(model.Flag))
+                    if (!string.IsNullOrEmpty(model.Flag))
                         People.Flag = model.Flag;
-                    if(model.Age != null)
+                    if (model.Age != null)
                         People.Age = model.Age;
                     mapper.Map(model, People);
+                    //check if flag is dead or alive for percentage calculation
+                    if (model.Flag.ToLower() == "alive" || model.Flag.ToLower() == "dead")
+                        context.People.Update(People);
+                    else
+                        throw new AppException("Sorry that flag is not recognized please use alive/dead instead");
                     //push updates to person
-                    context.People.Update(People);
                     context.SaveChanges();
                 }
                 //throw error if person tries to move sides
@@ -102,7 +119,7 @@ namespace AKQA_Backend.Services.PeopleService
 
         }
         //get person by id
-        private People getPersonById(int id)
+        private People GetPersonById(int id)
         {
             var person = context.People.Find(id);
             //if person does not exists throw error
@@ -133,8 +150,8 @@ namespace AKQA_Backend.Services.PeopleService
             double totalPeople = resultDead.ToList().Count + resultAlive.ToList().Count;
 
             //total percentage of people is alive
-            double totalPercentage = resultAlive.ToList().Count / totalPeople *100;
-            
+            double totalPercentage = resultAlive.ToList().Count / totalPeople * 100;
+
             return resultAlive.ToList().Count + " is alive today out of: " + totalPeople + " which is " + totalPercentage + " %";
         }
     }
