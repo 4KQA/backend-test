@@ -16,6 +16,9 @@ builder.Services.AddDbContext<PersonContext>(opt => opt.UseInMemoryDatabase("Peo
 
 var app = builder.Build();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();

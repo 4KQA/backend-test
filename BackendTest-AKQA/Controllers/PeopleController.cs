@@ -17,24 +17,29 @@ namespace BackendTest_AKQA.Controllers
             repo = personRepo;
         }
 
+        //This returns all people in the database
         [HttpGet("all")]
         public IEnumerable<Person> GetPeople()
         {
             return repo.GetPeople();
+            
         }
 
-        [HttpGet("search/{lastName}")]
+        //Returns a list of people mathcing the search parameter
+        [HttpGet("search")]
         public IEnumerable<Person> SearchByLName(string lastName)
         {
             return repo.SearchByLastName(lastName);
         }
 
+        //Returns the person matching the id
         [HttpGet("{id}")]
         public Person GetPerson(int id)
         {
             return GetPerson(id);
         }
 
+        //Gets statistics over data
         [HttpGet("stats")]
         public Statistics GetStatistics()
         {

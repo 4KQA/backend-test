@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "S/fA37Kf6+RWutDswAQkXcjlvZKTw7TgIBeYLdwfeDHs5I6AWOlq5Y63L/8s5uYit2nk7yrlzzs5Q5NWw4Gttg==",
+  "dgSpecHash": "Tv3J6z/U/mptXPYSrpsrwpgbeoHaWahfrhNtLYcbMNrUAW66HjWjWN39d7MecmDl6G/o3ibmJZ0FgylVWFVKww==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nansy\\.nuget\\packages\\jquery\\3.6.0\\jquery.3.6.0.nupkg.sha512",
     "C:\\Users\\Nansy\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.8\\microsoft.entityframeworkcore.6.0.8.nupkg.sha512",
     "C:\\Users\\Nansy\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.8\\microsoft.entityframeworkcore.abstractions.6.0.8.nupkg.sha512",
     "C:\\Users\\Nansy\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.8\\microsoft.entityframeworkcore.analyzers.6.0.8.nupkg.sha512",

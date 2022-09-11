@@ -15,6 +15,8 @@ namespace BackendTest_AKQA.Models
         public DbSet<Person> People { get; set; }
 
         Random rnd = new Random();
+
+        //Generates dummy data for the People database
         public void GeneratePeople()
         {
             string[] genders = { "Female", "Male", "Other" };

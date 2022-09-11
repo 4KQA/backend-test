@@ -45,3 +45,4 @@ C:\Users\Nansy\Documents\GitHub\backend-test\BackendTest-AKQA\obj\Debug\net6.0\r
 C:\Users\Nansy\Documents\GitHub\backend-test\BackendTest-AKQA\obj\Debug\net6.0\BackendTest-AKQA.pdb
 C:\Users\Nansy\Documents\GitHub\backend-test\BackendTest-AKQA\obj\Debug\net6.0\BackendTest-AKQA.genruntimeconfig.cache
 C:\Users\Nansy\Documents\GitHub\backend-test\BackendTest-AKQA\obj\Debug\net6.0\ref\BackendTest-AKQA.dll
+C:\Users\Nansy\Documents\GitHub\backend-test\BackendTest-AKQA\bin\Debug\net6.0\BackendTest-AKQA.staticwebassets.runtime.json

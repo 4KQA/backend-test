@@ -72,7 +72,7 @@ namespace BackendTest_AKQA.Repositories
 
         public IEnumerable<Person> SearchByLastName(string lastName)
         {
-            return _context.People.Where(p => p.LastName.Contains(lastName));
+            return _context.People.Where(p => p.LastName.Contains(lastName, StringComparison.OrdinalIgnoreCase));
         }
 
         public string UpdatePerson(int id, Person person)

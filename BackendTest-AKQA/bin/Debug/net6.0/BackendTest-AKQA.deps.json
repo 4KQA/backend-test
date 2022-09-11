@@ -8,12 +8,14 @@
     ".NETCoreApp,Version=v6.0": {
       "BackendTest-AKQA/1.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.InMemory": "6.0.8"
+          "Microsoft.EntityFrameworkCore.InMemory": "6.0.8",
+          "jQuery": "3.6.0"
         },
         "runtime": {
           "BackendTest-AKQA.dll": {}
         }
       },
+      "jQuery/3.6.0": {},
       "Microsoft.EntityFrameworkCore/6.0.8": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "6.0.8",
@@ -117,6 +119,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "jQuery/3.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sSzCTDWn15waSMjDrP21jjgG1j1pwISLaKiVCClwU4XGAmuZt+FScLkdyRvh9ppoIxAW/tJtJBYei+3CAwFQ7g==",
+      "path": "jquery/3.6.0",
+      "hashPath": "jquery.3.6.0.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/6.0.8": {
       "type": "package",
