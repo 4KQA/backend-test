@@ -77,10 +77,13 @@ namespace BackendTest_AKQA.Repositories
 
         public string UpdatePerson(int id, Person person)
         {
-            double oldLat = GetPerson(id).Latitude;
+            Person old = GetPerson(id);
+            double oldLat = old.Latitude;
             if (CheckIfMoveValid(oldLat, person.Latitude))
             {
-                _context.Entry(person).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                //_context.Entry()
+                _context.Entry(old).CurrentValues.SetValues(person);
+                //_context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
                 return "Update succesfull";
             }

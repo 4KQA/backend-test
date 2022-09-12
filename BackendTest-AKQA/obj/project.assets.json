@@ -637,25 +637,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nann8059\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Nansy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
+      "projectUniqueName": "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
       "projectName": "BackendTest-AKQA",
-      "projectPath": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
-      "packagesPath": "C:\\Users\\nann8059\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\obj\\",
+      "projectPath": "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\BackendTest-AKQA.csproj",
+      "packagesPath": "C:\\Users\\Nansy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nansy\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\nann8059\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Nansy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

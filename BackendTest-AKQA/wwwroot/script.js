@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    GetPeople();
-    getStats();
+    getPeople();
 })
 
-function GetPeople() {
+
+function getPeople() {
     ur = 'https://localhost:7289/api/people/all'
     $.ajax({
         url: ur,
@@ -25,7 +25,7 @@ function GetPeople() {
 function searchLastName() {
     let lastName = document.getElementById("searchbar").value
     if (lastName == "") {
-        GetPeople();
+        getPeople();
         return
     }
     ur = 'https://localhost:7289/api/people/search'
@@ -70,40 +70,32 @@ function showPeople(data) {
 function editPerson(id) {
     console.log(id);
 
-    let firstName = document.getElementById("first" + id).innerHTML
-    let lastName = document.getElementById("last" + id).innerHTML
-    let age = document.getElementById("age" + id).innerHTML
-    let gender = document.getElementById("gender" + id).innerHTML
-    let longitude = document.getElementById("lon" + id).innerHTML
-    let latitude = document.getElementById("lat" + id).innerHTML
-    let alive = document.getElementById("alive" + id).innerHTML
-
     document.getElementById("idE").value = id;
-    document.getElementById("firstE").value = firstName;
-    document.getElementById("lastE").value = lastName;
-    document.getElementById("ageE").value = age;
-    document.getElementById("gender").value = gender;
-    document.getElementById("lonE").value = longitude;
-    document.getElementById("latE").value = latitude;
-    document.getElementById("status").value = alive;
+    document.getElementById("firstE").value = document.getElementById("first" + id).innerHTML;
+    document.getElementById("lastE").value = document.getElementById("last" + id).innerHTML;
+    document.getElementById("ageE").value = document.getElementById("age" + id).innerHTML;
+    document.getElementById("genderE").value = document.getElementById("gender" + id).innerHTML;
+    document.getElementById("lonE").value = document.getElementById("lon" + id).innerHTML;
+    document.getElementById("latE").value = document.getElementById("lat" + id).innerHTML;
+    document.getElementById("statusE").value = document.getElementById("alive" + id).innerHTML;
 
-    console.log("fe");
 }
 
 function showStats(data) {
- 
-        $('#stats').append(
-            `<label id="survivors">Survivors: ${data.survivors}</label>
-                    <br />
-                    <label id="deceased">Deceased: ${data.deceased}</label>
-                    <br />
-                    <label id="pctAlive">Percent alive: ${data.pctageOfsurvivors}%</label>
-                    <br />
-                    <label id="pctNorth">Percent on northern hemisphere: ${data.pctOnNorthHem}%</label>
-                    <br />
-                    <label id="pctSouth">Percent on southern hemisphere: ${data.pctONSouthHem}%</label>`
-        );
-    }
+
+    $('#stats').append(
+        `<label id="survivors">Survivors: ${data.survivors}</label>
+        <br />
+        <label id="deceased">Deceased: ${data.deceased}</label>
+        <br />
+        <label id="pctAlive">Percent alive: ${data.pctageOfsurvivors}%</label>
+        <br />
+        <label id="pctNorth">Percent of all people on northern hemisphere: ${data.pctOnNorthHem}%</label>
+        <br />
+        <label id="pctSouth">Percent of all people on southern hemisphere: ${data.pctONSouthHem}%</label>
+        `
+    );
+}
 
 
 
@@ -124,8 +116,54 @@ function getStats() {
     });
 }
 
+
+
+
 function createPerson() {
+    document.getElementById("idE").value = -1;
+
+}
 
 
+function update() {
+    let rType;
+    let ur;
+    let id = document.getElementById("idE").value;
+
+    if (id == -1) {
+        ur = "https://localhost:7289/api/people";
+        rType = "POST";
+    }
+    else {
+        ur = "https://localhost:7289/api/people/" + id;
+        rType = "PUT";
+    }
+
+    var person = new Object();
+    person.id = id;
+    person.firstName = document.getElementById("firstE").value;
+    person.lastName = document.getElementById("lastE").value;
+    person.age = document.getElementById("ageE").value;
+    person.gender = document.getElementById("genderE").value;
+    person.longitude = document.getElementById("lonE").value;
+    person.latitude = document.getElementById("latE").value;
+    person.alive = document.getElementById("statusE").value;
+    
+
+    $.ajax({
+        url: 'https://localhost:7289/api/people/update',
+        method: 'PUT',
+        dataType: 'json',
+        data: person,
+        success: function () {
+            console.log();
+            getPeople();
+        },
+        error: function (error) {
+            if (error) {
+                console.log(error);
+            }
+        }
+    });
 
 }

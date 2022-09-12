@@ -28,26 +28,27 @@
                 </table>
             </div>
             <div id="stats" class="col2">
-                
+                <button onclick="getStats()">Get stats</button>
+                <br />
             </div>
         </div>
         <div class="row">
             <label id="idE" hidden="hidden"></label>
-            <input id="firstE" placeholder="First Name" />
-            <input id="lastE" placeholder="Last Name" />
-            <input id="ageE" placeholder="age" />
-            <select id="gender">
+            <input class="inputBox" id="firstE" placeholder="First Name" />
+            <input class="inputBox" id="lastE" placeholder="Last Name" />
+            <input class="ageBox"  id="ageE" placeholder="age" />
+            <select id="genderE">
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
                 <option value="Other">Other</option>
             </select>
-            <input id="lonE" placeholder="Longitude" />
-            <input id="latE" placeholder="Latitude" />
-            <select id="status">
+            <input class="inputBox" id="lonE" placeholder="Longitude" />
+            <input class="inputBox" id="latE" placeholder="Latitude" />
+            <select id="statusE">
                 <option value="true">Alive</option>
                 <option value="false">Dead</option>
             </select>
-            <button>Update</button>
+            <button onclick="update()">Update</button>
         </div>
     </div>
 </body>

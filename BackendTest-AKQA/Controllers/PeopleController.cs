@@ -52,10 +52,10 @@ namespace BackendTest_AKQA.Controllers
             repo.CreatePerson(person);
         }
 
-        [HttpPut("{id}")]
-        public string UpdatePerson(int id, [FromBody] Person person)
+        [HttpPut("update")]
+        public string UpdatePerson([FromQuery] Person person)
         {
-            return repo.UpdatePerson(id, person);
+            return repo.UpdatePerson(person.Id, person);
         }
 
         [HttpDelete("{id}")]
