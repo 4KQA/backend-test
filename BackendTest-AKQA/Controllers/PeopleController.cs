@@ -47,7 +47,7 @@ namespace BackendTest_AKQA.Controllers
         }
 
         [HttpPost]
-        public void CreatePerson([FromBody] Person person)
+        public void CreatePerson([FromQuery] Person person)
         {
             repo.CreatePerson(person);
         }

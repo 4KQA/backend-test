@@ -10,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddDbContext<PersonContext>(opt => opt.UseInMemoryDatabase("People"));
 builder.Services.AddScoped<IPersonRepo, PersonRepo>();
 
-builder.Services.AddDbContext<PersonContext>(opt => opt.UseInMemoryDatabase("People"));
 
 var app = builder.Build();
 

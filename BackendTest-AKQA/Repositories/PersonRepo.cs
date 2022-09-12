@@ -4,7 +4,7 @@ namespace BackendTest_AKQA.Repositories
 {
     public class PersonRepo : IPersonRepo
     {
-        private PersonContext _context;
+        private readonly PersonContext _context;
 
         public PersonRepo(PersonContext context)
         {

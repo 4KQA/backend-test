@@ -20,7 +20,7 @@ namespace BackendTest_AKQA.Models
         public void GeneratePeople()
         {
             string[] genders = { "Female", "Male", "Other" };
-            string[] firstNames = { "Sam", "Alex", "Kim", "Charlie", "Niki", "Pil" };
+            string[] firstNames = { "Sam", "Alex", "Kim", "Charlie", "Niki", "Pil", "Mark", "Bo", "Cecilie" };
             string[] lastNames = { "Hansen", "Petersen", "Karlsen", "Larsen", "Eriksen", "Pedersen", "Andersen" };
             for (int i = 0; i < 15; i++)
             {
