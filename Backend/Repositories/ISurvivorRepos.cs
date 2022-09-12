@@ -16,7 +16,7 @@ namespace Repositories{
         public Stats GetStats();
 
         public bool DeleteSurvivor(int id);
-        public Survivor UpdateSurvivor(int id, Survivor input);
+        public string UpdateSurvivor(int id, Survivor input);
         public Survivor CreateSurvivor(Survivor input);
     }
 }

@@ -41,6 +41,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("corsapp");
 
+// API KEY middleware
+//app.UseMiddleware<ApiKeyMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

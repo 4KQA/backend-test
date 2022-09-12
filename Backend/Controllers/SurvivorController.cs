@@ -82,14 +82,14 @@ namespace Controllers
 
         [HttpPut("{id}")]
         public IActionResult UpdateSurvivor(int id,[FromBody] Survivor input){
-            var _survivors = _repos.UpdateSurvivor(id, input);
+            var _survivor = _repos.UpdateSurvivor(id, input);
 
-            if (_survivors != null)
-                return Ok(_survivors);
+            if (_survivor == "Succes, survivor updated.")
+                return Ok(_survivor);
             else if (_repos.Exists(id) == false)
-                return NotFound();
+                return NotFound(_survivor);
             else
-                return BadRequest("Invalid transfer. the world is in two.");
+                return BadRequest(_survivor);
         }
 
         [HttpPost]

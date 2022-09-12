@@ -20,13 +20,15 @@ namespace Repositories{
             return _Context.Survivors.FirstOrDefault(x => x.lastName.Contains(lastname));
         }
 
-        public IEnumerable<Survivor> Relitives(Survivor survivor){
+        public IEnumerable<Survivor> Relitives(Survivor survivor){  
             return _Context.Survivors.Where(x=> x.lastName == survivor.lastName && x.firstName != survivor.firstName).ToList();
         }
 
-        // cud
-        // mangler validation af data input
         public Survivor CreateSurvivor(Survivor input){
+            string validation = ValidateSurvivorFields(input);
+            if(validation != "Succes")
+                return null;
+
             Survivor _survivor = new Survivor{
                 firstName = input.firstName,
                 lastName = input.lastName,
@@ -41,12 +43,16 @@ namespace Repositories{
             _Context.SaveChanges();
             return _survivor;
         }
-        public Survivor UpdateSurvivor(int survivorID, Survivor input){
+        public string UpdateSurvivor(int survivorID, Survivor input){
             Survivor _survivor = _Context.Survivors.FirstOrDefault(x => x.Survivor_ID == survivorID);
-            if(_survivor == null){ return null; }
+            if(_survivor == null){ return "Survivor doesnt exist."; }
+
+            string validation = ValidateSurvivorFields(input);
+            if(validation != "Succes")
+                return "Please validate your " + validation;
 
             if (CheckValidMove(_survivor.latitude, input.latitude) == false)
-                return null;
+                return "Survivor cant move to the other hemiphere since its gone? :)";
             
             _survivor.firstName = input.firstName;
             _survivor.lastName = input.lastName;
@@ -57,7 +63,7 @@ namespace Repositories{
             _survivor.alive = input.alive;
 
             _Context.SaveChanges();
-            return _survivor;
+            return "Succes, survivor updated.";
         }
 
         public bool DeleteSurvivor(int survivorID){
@@ -90,6 +96,23 @@ namespace Repositories{
 
         public bool Exists(int survivorID){
             return _Context.Survivors.Any(x => x.Survivor_ID == survivorID);
+        }
+
+        public string ValidateSurvivorFields(Survivor input){
+            if(input.firstName == "" || input.lastName == "")
+                return "First | last name are invalid.";
+            
+            if(input.age < 0 && input.age > 150)
+                return "Age is invalid";
+
+            if(input.longitude > 180 || input.longitude < -180)
+                return "lontitude should be between -180 & 180";
+
+            if(input.latitude > 90 || input.latitude < -90)
+                return "latitude should be between -90 & 90";
+
+            return "Succes";
+
         }
     }
 }
