@@ -99,7 +99,7 @@ namespace Controllers
             if (_survivor == null)
                 return BadRequest();
         
-            return CreatedAtAction("GetRent", new { id = _survivor.Survivor_ID }, _survivor);
+            return CreatedAtAction("GetSurvivor", new { id = _survivor.Survivor_ID }, _survivor);
         }
 
 
