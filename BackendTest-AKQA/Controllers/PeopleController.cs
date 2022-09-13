@@ -46,16 +46,17 @@ namespace BackendTest_AKQA.Controllers
             return repo.GetStatistics();
         }
 
-        [HttpPost]
-        public void CreatePerson([FromQuery] Person person)
+        [HttpPost("create")]
+        public void CreatePerson([FromBody] Person person)
         {
             repo.CreatePerson(person);
         }
 
         [HttpPut("update")]
-        public string UpdatePerson([FromQuery] Person person)
+        public string UpdatePerson([FromBody] Person person)
         {
             return repo.UpdatePerson(person.Id, person);
+            
         }
 
         [HttpDelete("{id}")]

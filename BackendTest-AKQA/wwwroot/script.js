@@ -1,5 +1,18 @@
 ﻿$(document).ready(function () {
     getPeople();
+    $('#searchBtn').click(function () {
+        searchLastName();
+    })
+
+    getPeople();
+    $('#update').click(function () {
+        update();
+    })
+
+    getPeople();
+    $('#clearInput').click(function () {
+        clearInput();
+    })
 })
 
 
@@ -19,6 +32,8 @@ function getPeople() {
                 console.log(error);
             }
         }
+    }).done(function () {
+        getStats();
     });
 }
 
@@ -106,6 +121,7 @@ function getStats() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+            $("#stats").empty();
             showStats(data);
         },
         error: function (error) {
@@ -117,53 +133,92 @@ function getStats() {
 }
 
 
+async function update() {
+    let id = document.getElementById("idE").value;
+    if (id === undefined) {
+        id = -1;
+    }
 
+    let person = getPersonInfo(id);
 
-function createPerson() {
-    document.getElementById("idE").value = -1;
+    //Sees if person needs to be updated or created(i=-1)
+    if (id == -1) {
+        postRequest(person);
+    }
+    else {
+        putRequest(person);
+    }
 
 }
 
+function putRequest(data) {
+    $.ajax({
+        url: 'https://localhost:7289/api/people/update',
+        type: 'PUT',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+        error: function (error) {
+            if (error) {
+                console.log(error);
+            }
+        },
+        success: function (response) {
+            console.log(response);
+        }
+    }).done(function () {
+        getPeople();
+        clearInput();
+        getStats();
+    });
+}
 
-function update() {
-    let rType;
-    let ur;
-    let id = document.getElementById("idE").value;
 
-    if (id == -1) {
-        ur = "https://localhost:7289/api/people";
-        rType = "POST";
-    }
-    else {
-        ur = "https://localhost:7289/api/people/" + id;
-        rType = "PUT";
-    }
+function postRequest(data) {
+    $.ajax({
+        url: 'https://localhost:7289/api/people/create',
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+        error: function (error) {
+            if (error) {
+                console.log(error);
+            }
+        },
+        success: function () {
+            console.log("Success");
+        }
+    }).done(function () {
+        getPeople();
+        clearInput();
+        getStats();
+    });
+}
+
+function clearInput() {
+    document.getElementById("idE").value = -1;
+    document.getElementById("firstE").value = "";
+    document.getElementById("lastE").value = "";
+    document.getElementById("ageE").value = "";
+    document.getElementById("genderE").value = "Female";
+    document.getElementById("lonE").value = "";
+    document.getElementById("latE").value = "";
+    document.getElementById("statusE").value = "true";
+}
+
+function getPersonInfo(id) {
 
     var person = new Object();
+
     person.id = id;
-    person.firstName = document.getElementById("firstE").value;
+    person.FirstName = document.getElementById("firstE").value;
     person.lastName = document.getElementById("lastE").value;
     person.age = document.getElementById("ageE").value;
     person.gender = document.getElementById("genderE").value;
     person.longitude = document.getElementById("lonE").value;
     person.latitude = document.getElementById("latE").value;
     person.alive = document.getElementById("statusE").value;
-    
 
-    $.ajax({
-        url: 'https://localhost:7289/api/people/update',
-        method: 'PUT',
-        dataType: 'json',
-        data: person,
-        success: function () {
-            console.log();
-            getPeople();
-        },
-        error: function (error) {
-            if (error) {
-                console.log(error);
-            }
-        }
-    });
-
+    var live = (person.alive === 'true')
+    person.alive = live;
+    return person;
 }
