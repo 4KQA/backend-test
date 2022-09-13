@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "sHwBpCYqzBWvpSRjvgzQEJ49XQfU2F9sCPYr5l/S6TE=",
+  "Source": "BackendTest-AKQA",
+  "BasePath": "_content/BackendTest-AKQA",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "BackendTest-AKQA\\wwwroot",
+      "Source": "BackendTest-AKQA",
+      "ContentRoot": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\wwwroot\\",
+      "BasePath": "_content/BackendTest-AKQA",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\wwwroot\\index.html",
+      "SourceId": "BackendTest-AKQA",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\wwwroot\\",
+      "BasePath": "_content/BackendTest-AKQA",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\wwwroot\\script.js",
+      "SourceId": "BackendTest-AKQA",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\wwwroot\\",
+      "BasePath": "_content/BackendTest-AKQA",
+      "RelativePath": "script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\script.js"
+    },
+    {
+      "Identity": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\wwwroot\\style.css",
+      "SourceId": "BackendTest-AKQA",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nann8059\\Documents\\GitHub\\backend-test\\BackendTest-AKQA\\wwwroot\\",
+      "BasePath": "_content/BackendTest-AKQA",
+      "RelativePath": "style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\style.css"
+    }
+  ]
+}

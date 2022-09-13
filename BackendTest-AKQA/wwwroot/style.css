@@ -1,0 +1,17 @@
+﻿.row {
+    display:flex;
+}
+
+.col1 {}
+
+.col2 {
+    padding-left: 2%;
+}
+
+.inputBox{
+    
+}
+
+.ageBox {
+    width:6%;
+}

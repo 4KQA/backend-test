@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title></title>
+</head>
+<body>
+    <div>
+        <div class="row">
+            <div class="col1">
+            <input id="searchbar" placeholder="Last Name" />
+            <button id="searchBtn">Search</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First</th>
+                            <th>Last</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Longitude</th>
+                            <th>Latitude</th>
+                            <th>Alive</th>
+                        </tr>
+                    </thead>
+                    <tbody id="peopleList"></tbody>
+                </table>
+            </div>
+            <div id="stats" class="col2">
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <label id="idE" hidden="hidden"></label>
+            <input class="inputBox" id="firstE" placeholder="First Name" />
+            <input class="inputBox" id="lastE" placeholder="Last Name" />
+            <input class="ageBox"  id="ageE" placeholder="age" />
+            <select id="genderE">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+            </select>
+            <input class="inputBox" id="lonE" placeholder="Longitude" />
+            <input class="inputBox" id="latE" placeholder="Latitude" />
+            <select id="statusE">
+                <option value="true">Alive</option>
+                <option value="false">Dead</option>
+            </select>
+            <button id="update">Update</button>
+            <button id="clearInput">Clear</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="script.js"></script>
