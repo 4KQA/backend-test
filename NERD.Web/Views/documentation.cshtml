@@ -1,0 +1,248 @@
+﻿@using NERD.Web.Models;
+@using NERD.Web;
+@{
+    Layout = null;
+    string userId = Request.QueryString["id"];
+    bool requestHasUser = false;
+    User user = new User();
+    if (int.TryParse(userId, out var _userId))
+    {
+        user = new NERD.Web.Business.Features.UserService().GetDataFromDB(_userId);
+        if (user != null && user.IsValid())
+        {
+            requestHasUser = true;
+        }
+    }
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title></title>
+</head>
+<body onload="{getSurvivorPercentage()}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="userGreeting"></h1>
+                <h2 id="askForInfo"></h2>
+                <h3 id="survivorPercentage"></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form id="POSTform" method="POST">
+                    <div class="form-group">
+                        <label for="userFirstName">First name</label>
+                        <input class="form-control" id="userFirstName" placeholder="Enter first name" value="@user.UserFname" name="UserFname">
+                    </div>
+                    <div class="form-group">
+                        <label for="userLastName">Last name</label>
+                        <input class="form-control" id="userLastName" placeholder="Enter Last name" value="@user.UserLname" name="UserLname">
+                    </div>
+                    <div class="form-group">
+                        <label for="userLatitude">Current latitude</label>
+                        <input class="form-control" id="userLatitude" placeholder="Enter current latitude" value="@user.UserLat" name="UserLat">
+                    </div>
+                    <div class="form-group">
+                        <label for="userLongitude">Current longitude</label>
+                        <input class="form-control" id="userLongitude" placeholder="Enter current latitude" value="@user.UserLon" name="UserLon">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="userId" value="@user.ID" name="Id">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="Alive" value="@user.Alive" name="Alive">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userGender">Choose gender</label>
+                        <select class="form-control" id="userGender" value="@user.Gender" name="Gender">
+                            <option>Unknown</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Both</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </form>
+                <button class="btn btn-primary" form="POSTform" type="submit" id="SubmitButton" role="button">submit</button>
+
+               
+                <div class="postmessage hide">
+                    <div >
+                        <h2 id="success"></h2>
+                    </div>
+                    <div>
+                        <h1 id="error"></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <button id="getSurvivorsButton" type="button" class="btn btn-success">View all survivors</button>
+                
+                <h4>Users</h4>
+                <ul id="userList">
+                    
+                </ul>
+                <div>
+                    
+                    <button id="getRelativesButton" type="button">find your relatives</button>
+
+                    <ul id="relativesList" >
+                        
+
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        const fetchUrl = "https://localhost:44340/endpoints/";
+        var url = window.location.href.replace(window.location.search, '');
+        var userListHtmlFormat = "<li class='user-details'><div><p>Firstname:{UserFname}</p><p>Last name:{UserLname}</p><a href=" + url + "?id={ID}>Edit user</a></div></li>";
+
+        function postFunction(postUrl, postData) {
+            $.ajax({
+                url: fetchUrl + postUrl,
+                data: postData,
+                type:'POST'
+            }).then(function (response, e, s)
+            {
+                console.log('resp', response)
+                if (response.length === 49 || response.length === 26) {
+                    $('#success').text('yay :^)')
+                } else if (response.length === 45 || response.length === 21) {
+                    $('#error').text('lort')
+                    //href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                }
+            })  
+        }
+        
+        function getListFunction(getUrl, dataList, htmlFormat) {
+            if (!dataList.children("li").length >= 1) {
+                $.get(fetchUrl + getUrl, dataList, function (data, status) {
+                    for (var i = 0; i < data.length; ++i) {
+                        var user = data[i];
+                        var values = [];
+
+                        let aliveStatus = user.Alive === true ? "alive" : "deceased";
+                        user.Alive = aliveStatus;
+
+                        newHtml = SetPlaceholders(user, htmlFormat);
+                        
+                        dataList.append(newHtml);
+
+                            
+                    }
+                })
+            }
+
+        }
+
+        function SetPlaceholders(user, html) {
+            var htmlReplaced = '';
+            Object.keys(user).forEach(function (prop) {
+                //Replace all placeholders with values
+                if (html.indexOf(prop) > 0) {
+                    htmlReplaced = html.replaceAll("{" + prop + "}", user[prop]);
+                    
+                }
+                
+                console.log(prop, user[prop]); 
+            });
+
+            return htmlReplaced;
+        }
+        //let relativesList = $('#relativesList')
+        //getListFunction('getRelatives?Lname=@user.UserLname', relativesList)
+
+        function getSurvivorPercentage() {
+            $.get(fetchUrl + 'getSurvivorPercentage', function (data){
+                let survivorPercentageDisplay = $('#survivorPercentage')
+                survivorPercentageDisplay.text(data + "%")
+            })
+
+        }
+
+
+
+        
+        var page = url.substring(url.lastIndexOf('=') + 1);
+            if (page.length == 50) {
+
+                document.getElementById('userGreeting').innerHTML = "Welcome!"
+                document.getElementById('askForInfo').innerHTML = "Please enter your information so that people will know youre okay!"
+            }
+            else {
+                document.getElementById('userGreeting').innerHTML = "Welcome back, " + "@user.UserFname"
+                document.getElementById('askForInfo').innerHTML = "Please update any information that is no longer valid"
+            }
+
+
+            let submitForm = $('#POSTform')
+        var $submitButton = $('#SubmitButton');
+
+        $(document).ready(function () {
+            submitForm.on('submit', function(e)  {
+                e.preventDefault();
+                postFunction('UpdateOrCreate', submitForm.serialize())
+
+            });
+        })
+                    //user didnt exist error: 45
+                    //User did not exist success: 49
+                    //Unable to update user: 21
+                    //user update success: 26
+        let getRelativesButton = $('#getRelativesButton')
+        getRelativesButton.on('click', function (e) {
+            e.preventDefault
+            let relativesList = $('#relativesList')
+            var userPropsToRender = ['UserFname', 'Alive'];
+            getListFunction('getRelatives?Lname=@user.UserLname', relativesList, userListHtmlFormat)
+           
+        })
+
+
+
+        let survivorButton = $('#getSurvivorsButton')
+        survivorButton.on('click', function (e) {
+            e.preventDefault
+            let userList = $('#userList')
+            var userPropsToRender = ['UserFname', 'UserLname'];
+            getListFunction('getSurvivors', userList, userListHtmlFormat)
+            
+        })
+
+
+        function setAlive()
+        {
+            var alive = document.getElementById('Alive');
+            if (alive == "") {
+                alive.value = "true";
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>
