@@ -1,0 +1,14 @@
+POST http://localhost:5185/reports/create
+Content-Type: application/json
+
+{
+    "FirstName": "Dennis",
+    "LastName": "Bjarne",
+    "Age": 25,
+    "Gender": "Male",
+    "IsAlive": true,
+    "Location": {
+        "Latitude": 55.676098,
+        "Longitude": 12.568337
+    }
+}

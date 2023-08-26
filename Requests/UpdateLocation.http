@@ -1,0 +1,7 @@
+PUT http://localhost:5185/reports/update/f8a40dbe-c75f-4c42-8a5f-c53913783527
+Content-Type: application/json
+
+{
+    "latitude": -25.676098,
+    "longitude": 65.568337
+}
