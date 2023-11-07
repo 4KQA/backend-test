@@ -6,7 +6,7 @@ namespace SurvivorAPI.Models
 {
     public class PersonContext : DbContext
     {
-        public DbSet<PersonDTO> Tasks { get; set; }
+        public DbSet<PersonDTO> PersonDTOs { get; set; }
         public string DbPath { get; }
 
         public PersonContext()
