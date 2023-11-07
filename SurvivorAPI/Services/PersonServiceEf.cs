@@ -21,10 +21,7 @@ namespace SurvivorAPI.Services
         {
 
             using var db = new PersonContext();
-            Console.WriteLine($"Database path: {db.DbPath}.");
 
-            // Read
-            Console.WriteLine("Read all persons");
             return await db.PersonDTOs.ToListAsync();
 
         }
@@ -37,18 +34,24 @@ namespace SurvivorAPI.Services
 
         }
 
-        //Post Person
+/*
+        public async Task<double> ReadSurvivalRate()
+        {
+
+            using var db = new PersonContext();
+            return await db.PersonDTOs.Where(p => p.LastName.ToLower() == lastName.ToLower()).ToListAsync();
+
+        }
+*/
+
         public async Task<PersonDTO> CreatePerson(PersonDTO PersonDTO)
         {
 
             using var db = new PersonContext();
-            Console.WriteLine($"Database path: {db.DbPath}.");
 
-            // Create
-            Console.WriteLine("Add person");
+
             await db.AddAsync(PersonDTO);
             await db.SaveChangesAsync();
-            Console.WriteLine(PersonDTO.Id);
             return PersonDTO;
 
         }
@@ -59,7 +62,7 @@ namespace SurvivorAPI.Services
             using var db = new PersonContext();
             PersonDTO tmpPersonDTO = await db.PersonDTOs.FirstAsync(p => p.Id == id);
 
-            if (Math.Sign(lastLatitude) == Math.Sign(lastLatitude)){
+            if (Math.Sign(lastLatitude) != Math.Sign(tmpPersonDTO.LastLatitude)){
                 throw new InvalidDataException("You cannot move from one hemisphere to another, they've become semispheres!");
             }
             else if(lastLatitude == 0){
@@ -68,16 +71,13 @@ namespace SurvivorAPI.Services
                 
             }
             else{
-                tmpPersonDTO.LastLatitude = lastLatitude;
+                tmpPersonDTO.LastLatitude = Math.Round(lastLatitude, 5);
                 tmpPersonDTO.LastLongitude = lastLongitude;
                 tmpPersonDTO.Status = status;
             }
             
-
-
             await db.SaveChangesAsync();
             return tmpPersonDTO;
-
 
         }
     }
