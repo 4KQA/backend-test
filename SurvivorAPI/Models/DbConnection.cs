@@ -15,6 +15,7 @@ namespace SurvivorAPI.Models
             else if (connectionString.ToLower().Contains("entity-framework"))
             {
                 builder.Services.AddScoped<IPersonRepository, PersonServiceEF>();
+                
             }
             else throw new InvalidOperationException("Connection String does not contain a database specification");
         }
