@@ -28,8 +28,16 @@ public class SurvivorController : ControllerBase
     [HttpGet]
     public async Task<List<PersonDTO>> GetPersons() => await _personRepository.ReadPersons();
 
+    [HttpGet("lastname")]
+    public async Task<List<PersonDTO>> GetPersonsLastName(string lastName)
+        => await _personRepository.ReadPersonsLastName(lastName);
+
     [HttpPost]
-    public async Task<PersonDTO> PostPerson(string firstName, string lastName, int age, string gender, double lastLatitude, double lastLongitude, int status) 
-    => await _personRepository.CreatePerson(new PersonDTO(firstName, lastName, age, gender, lastLatitude, lastLongitude, status));
+    public async Task<PersonDTO> PostPerson(string firstName, string lastName, int age, string gender, double lastLatitude, double lastLongitude, int status)
+        => await _personRepository.CreatePerson(new PersonDTO(firstName, lastName, age, gender, lastLatitude, lastLongitude, status));
+
+    [HttpPut]
+    public async Task<PersonDTO> UpdatePerson(int id, double lastLatitude, double lastLongitude, int status)
+        => await _personRepository.UpdatePerson(id, lastLatitude, lastLongitude, status);
 
 }
