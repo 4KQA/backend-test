@@ -11,7 +11,7 @@ using SurvivorAPI.Models;
 namespace SurvivorAPI.Migrations
 {
     [DbContext(typeof(PersonContext))]
-    [Migration("20231107184801_InitialCreate")]
+    [Migration("20231107191209_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

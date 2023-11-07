@@ -37,20 +37,19 @@ namespace SurvivorAPI.Services
         }
 
         //Post Person
-        public async Task<int> CreatePerson(PersonDTO PersonDTO)
+        public async Task<PersonDTO> CreatePerson(PersonDTO PersonDTO)
         {
 
             using (var db = new PersonContext())
             {
                 Console.WriteLine($"Database path: {db.DbPath}.");
 
-                PersonDTO tmpPerson = new();
                 // Create
                 Console.WriteLine("Add person");
-                await db.AddAsync(tmpPerson);
+                await db.AddAsync(PersonDTO);
                 await db.SaveChangesAsync();
-                Console.WriteLine(tmpPerson.Id);
-                return (int)tmpPerson.Id;
+                Console.WriteLine(PersonDTO.Id);
+                return PersonDTO;
 
             }
 

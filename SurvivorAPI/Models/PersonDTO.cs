@@ -8,6 +8,17 @@ namespace SurvivorAPI.Models
 
         }
 
+        public PersonDTO(string firstName, string lastName, int age, string gender, double lastLatitude, double lastLongitude, int status)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Age = age;
+            Gender = gender;
+            LastLatitude = lastLatitude;
+            LastLongitude = lastLongitude;
+            Status = status;
+        }
+
 
         public int? Id { get; set; }
         public string? FirstName { get; set; }

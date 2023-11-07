@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using SurvivorAPI.Services;
+using SurvivorAPI.Models;
 
 namespace SurvivorAPI.Controllers;
 
@@ -15,10 +17,19 @@ public class SurvivorController : ControllerBase
 
     private readonly ILogger<SurvivorController> _logger;
 
-    public SurvivorController(ILogger<SurvivorController> logger)
+    private readonly IPersonRepository _personRepository;
+
+    public SurvivorController(ILogger<SurvivorController> logger, IPersonRepository personRepository)
     {
         _logger = logger;
+        _personRepository = personRepository;
     }
 
-    
+    [HttpGet]
+    public async Task<List<PersonDTO>> GetPersons() => await _personRepository.ReadPersons();
+
+    [HttpPost]
+    public async Task<PersonDTO> PostPerson(string firstName, string lastName, int age, string gender, double lastLatitude, double lastLongitude, int status) 
+    => await _personRepository.CreatePerson(new PersonDTO(firstName, lastName, age, gender, lastLatitude, lastLongitude, status));
+
 }
