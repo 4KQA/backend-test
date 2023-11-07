@@ -1,13 +1,15 @@
 using System;
 using SurvivorAPI.Models;
 
-namespace SurvivorServiceAPI.Services
+namespace SurvivorAPI.Services
 {
     public interface IPersonRepository
     {
         Task <int> CreatePerson(PersonDTO PersonDTO);
-        Task<PersonDTO> ReadPerson(int PersonId);
+        Task<List<PersonDTO>> ReadPersons();
+        Task<List<PersonDTO>> ReadPersonsLastName(string lastName);
         Task<PersonDTO> UpdatePerson(PersonDTO PersonDTO);
-        Task<bool> DeletePerson(int PersonId);
+
+        
     }
 }
