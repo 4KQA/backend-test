@@ -14,8 +14,8 @@ namespace SurvivorAPI.Models
             LastName = lastName;
             Age = age;
             Gender = gender;
-            LastLatitude = lastLatitude;
-            LastLongitude = lastLongitude;
+            LastLatitude = Math.Round(lastLatitude, 5);
+            LastLongitude = Math.Round(lastLongitude, 5);
             Alive = alive;
         }
 

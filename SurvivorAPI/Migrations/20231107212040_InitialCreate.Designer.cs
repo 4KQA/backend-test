@@ -10,7 +10,7 @@ using SurvivorAPI.Models;
 namespace SurvivorAPI.Migrations
 {
     [DbContext(typeof(PersonContext))]
-    [Migration("20231107211233_InitialCreate")]
+    [Migration("20231107212040_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

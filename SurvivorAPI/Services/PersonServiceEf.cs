@@ -30,7 +30,7 @@ namespace SurvivorAPI.Services
                 for (int i = 0; i < 5; i++)
                 {
 
-                    PersonDTO tmpPerson = new("SeedFirstName" + i, "SeedLastName" + i, 20 + i, "SeedGender" + i, 21.21 - 10 * i, 30.1 - 11.1 * i, i % 2 == 0);
+                    PersonDTO tmpPerson = new("SeedFirstName" + i, "SeedLastName" + i, 20 + i, "SeedGender" + i, 21.12345 - 10 * i, 30.11111 - 11.1 * i, i % 2 == 0);
                     await CreatePerson(tmpPerson);
                 }
                 
