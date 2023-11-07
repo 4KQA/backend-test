@@ -1,6 +1,6 @@
 namespace SurvivorAPI.Models
 {
-    public record PersonDTO
+    public class PersonDTO
     {
 
         public PersonDTO()

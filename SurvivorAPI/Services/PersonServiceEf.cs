@@ -6,12 +6,12 @@ using SurvivorAPI.Models;
 
 namespace SurvivorAPI.Services
 {
-    public class SqlPersonRepository : IPersonRepository
+    public class PersonServiceEF : IPersonRepository
     {
         private readonly string? _dbConnection = Environment.GetEnvironmentVariable("connectionstring");
         private readonly ILogger<SurvivorController> _logger;
 
-        public SqlPersonRepository(ILogger<SurvivorController> logger)
+        public PersonServiceEF(ILogger<SurvivorController> logger)
         {
             _logger = logger;
         }
