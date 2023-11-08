@@ -10,71 +10,99 @@ public class PersonService
 {
     private readonly HttpClient http;
     private readonly IConfiguration configuration;
-    private readonly string baseAPI = "";
+    private readonly string? baseAPI = "";
 
 
-    public event Action RefreshRequired;
 
-    public PersonService(HttpClient http, IConfiguration configuration) {
+    public PersonService(HttpClient http, IConfiguration configuration)
+    {
         this.http = http;
         this.configuration = configuration;
-        this.baseAPI = configuration["base_api"];
+        baseAPI = configuration["base_api"];
     }
 
-    public void CallRequestRefresh()
+
+    public async Task<List<Person>?> GetPersons()
     {
-         RefreshRequired?.Invoke();
+        try
+        {
+            string url = $"{baseAPI}persons/";
+            return await http.GetFromJsonAsync<List<Person>>(url);
+        }
+        catch
+        {
+            throw new InvalidOperationException();
+        }
+
     }
 
-    public async Task<List<Person>> GetPersons()
+    public async Task<List<Person>?> GetPersonsLastName(string lastName)
     {
-        string url = $"{baseAPI}persons/";
-        Console.WriteLine("Base API: " + baseAPI);
-        Console.WriteLine("Base URL: " + url);
-        return await http.GetFromJsonAsync<List<Person>>(url);
+
+        try
+        {
+            string url = $"{baseAPI}lastname?lastName=" + lastName;
+            return await http.GetFromJsonAsync<List<Person>>(url);
+        }
+        catch
+        {
+            throw new InvalidOperationException();
+        }
     }
 
-    public async Task<List<Person>> GetPersonsLastName(string lastName)
-    {
-        string url = $"{baseAPI}lastname?lastName="+ lastName;
-        Console.WriteLine("Base API: " + baseAPI);
-        Console.WriteLine("Base URL: " + url);
-        return await http.GetFromJsonAsync<List<Person>>(url);
-    }
+
 
     public async Task<double> GetSurvivalRate()
     {
-        string url = $"{baseAPI}survival";
-        Console.WriteLine("Base API: " + baseAPI);
-        Console.WriteLine("Base URL: " + url);
-        return await http.GetFromJsonAsync<double>(url);
+        try
+        {
+
+            string url = $"{baseAPI}survival";
+            return await http.GetFromJsonAsync<double>(url);
+        }
+        catch
+        {
+            throw new InvalidOperationException();
+        }
+
     }
+
 
     public async Task<Person> UpdatePerson(Person person)
     {
         string url = $"{baseAPI}";
-        person.Id = 0;
-        Console.WriteLine("Base API: " + baseAPI);
-        Console.WriteLine("Base URL: " + url);
-        var response = await http.PutAsJsonAsync<Person>(url, person);
-        Console.WriteLine(response);
-        return person;
-        
+
+        try
+        {
+            await http.PutAsJsonAsync<Person>(url, person);
+            return person;
+        }
+        catch
+        {
+            throw new InvalidOperationException();
+        }
+
+
 
     }
 
     public async Task<Person> CreatePerson(Person person)
     {
         string url = $"{baseAPI}";
-        Console.WriteLine("Base API: " + baseAPI);
-        Console.WriteLine("Base URL: " + url);
         Console.WriteLine(person.FirstName + person.LastName + person.Age + person.Gender + person.LastLatitude + person.LastLongitude + person.Alive);
-        var response = await http.PostAsJsonAsync<Person>(url, person);
-        Console.WriteLine(response);
-        return person;
-        
+        try
+        {
+            await http.PostAsJsonAsync<Person>(url, person);
+            return person;
+        }
+        catch
+        {
+            throw new InvalidOperationException();
+        }
+
 
     }
 
-    
+
+
 }
