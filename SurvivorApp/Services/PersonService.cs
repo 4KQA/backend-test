@@ -33,5 +33,13 @@ public class PersonService
         return await http.GetFromJsonAsync<List<Person>>(url);
     }
 
+    public async Task<List<Person>> GetPersonsLastName(string lastName)
+    {
+        string url = $"{baseAPI}lastname?lastName="+ lastName;
+        Console.WriteLine("Base API: " + baseAPI);
+        Console.WriteLine("Base URL: " + url);
+        return await http.GetFromJsonAsync<List<Person>>(url);
+    }
+
     
 }
