@@ -19,7 +19,7 @@ namespace SurvivorAPI.Models
             }
             else throw new InvalidOperationException("Connection String does not contain a database specification");
         }
-        public string? connectionString = Environment.GetEnvironmentVariable("connectionstring");
+        public string? connectionString = "entity-framework";
 
     }
 }
