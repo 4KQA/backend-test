@@ -26,10 +26,10 @@
         <td><input type="text" @bind-value="@updatePerson.LastLongitude" /></td>
         <td><input type="checkbox" @bind-value="@updatePerson.Alive" /></td>
     </tr>
-
-    <input type="button" value="Update Person" @onclick="@UpdatePersonInfo" />
-
 </table>
+
+<input type="button" value="Update Person" @onclick="@UpdatePersonInfo" />
+<div>@confirmationMessage</div>
 
 
 
@@ -37,11 +37,13 @@
   
 
   private Person updatePerson = new("", "", -1, "", -1, -1, false);
+  private string confirmationMessage = "";
   
   async Task UpdatePersonInfo()
     {
-        Console.WriteLine(updatePerson.Alive);
+
         await personService.UpdatePerson(updatePerson);
+        confirmationMessage = "Person updated!";
 
     }
 }
