@@ -1,6 +1,9 @@
 {
   "cacheBootResources": true,
-  "config": [ ],
+  "config": [
+    "appsettings.Development.json",
+    "appsettings.json"
+  ],
   "debugBuild": true,
   "entryAssembly": "SurvivorApp",
   "icuDataMode": 0,
@@ -198,13 +201,13 @@
       "mscorlib.dll": "sha256-UH9jptJH1wZ3XMBPuMMAEaUKpfRxc5AgXkLdAFAvNVE=",
       "netstandard.dll": "sha256-+jUzj0FB0YcoBUeSkSNEjhVDTG08qbZ2twfCBMbzT+Q=",
       "System.Private.CoreLib.dll": "sha256-l+\/quNqfNCSUDSMJcp0+IxlSdOdnAtwVVWMXmYGHMpg=",
-      "SurvivorApp.dll": "sha256-mutP448x9F4bKGi86bsR3oksEIeVvg0AQuaXg28Dx8E="
+      "SurvivorApp.dll": "sha256-J0Sr8DhYOkQccQZZkIG+kh58wz4R77f1fBIryBsKyS4="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "SurvivorApp.pdb": "sha256-V2iA3Dow5OSoupLP3MyTk85Wk2URh71YHt18uWLBVAc="
+      "SurvivorApp.pdb": "sha256-U87lZhx92zpE5P3QdeouV17qIvZmw6IhpuOlp+b1WCo="
     },
     "runtime": {
       "dotnet.7.0.1.7p7fwr5vy2.js": "sha256-jjax3FMRXzFAziWowdtJf6vipP2xXAaA5gD6VBYB6Y0=",

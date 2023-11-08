@@ -806,8 +806,6 @@ C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Deb
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\build-gz\H7msNJT7.gz
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\build-gz\6FbmaX2U.gz
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\build-gz\4ySYixDn.gz
-C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\build-gz\HrZAbXg8.gz
-C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\build-gz\FCWwPbzM.gz
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\build-gz\r6W0UvvB.gz
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\blazor.boot.json
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\staticwebassets\msbuild.SurvivorApp.Microsoft.AspNetCore.StaticWebAssets.props
@@ -826,3 +824,5 @@ C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Deb
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\refint\SurvivorApp.dll
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\SurvivorApp.pdb
 C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\Survivorapp\obj\Debug\net7.0\ref\SurvivorApp.dll
+C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\SurvivorApp\obj\Debug\net7.0\build-gz\xVY9yJDk.gz
+C:\Users\Wodinaz\Programming\AKQA-test\Survivor\backend-test\SurvivorApp\obj\Debug\net7.0\build-gz\3+4c35tB.gz

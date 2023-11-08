@@ -1,9 +1,60 @@
-﻿@page "/"
+﻿@using SurvivorApp.Models;
+@using SurvivorApp.Services;
+@page "/survivors"
+@inject PersonService personService;
+@inject IConfiguration configuration;
+
+
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Showing Survivors</h1>
 
-Welcome to your new app.
+<table>
+    <tr>
+        <td style="width:15%">FirstName</td>
+        <td style="width:15%">LastName</td>
+        <td style="width:10%">Age</td>
+        <td style="width:10%">Gender</td>
+        <td style="width:10%">LastLat</td>
+        <td style="width:10%">LastLong</td>
+        <td style="width:10%">Alive</td>
+    </tr>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    @if (Persons == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+
+        @foreach (var person in Persons)
+        {
+            <tr>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.Age</td>
+                <td>@person.Gender</td>
+                <td>@person.LastLatitude</td>
+                <td>@person.LastLongitude</td>
+                <td>@person.Alive</td>
+            </tr>
+        }
+    }
+
+</table>
+
+
+@code {
+
+
+    private List<Person>? Persons;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        Persons = await personService.GetPersons();
+    }
+
+
+}

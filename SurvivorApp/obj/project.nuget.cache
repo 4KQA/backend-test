@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mM5mxS21wH/iCdSg7pH+saD+Ia8rzwSEbWu1D0KUsHHHp6KLnhKvMldgO7ZCGgRA1UaXoKkYnotEmXpfU3ZBdw==",
+  "dgSpecHash": "vq0i9+Dc9aJhNRw9MvNuZwxeLXOzDZtWiHmQuGfdh5ttmKygT9taB/ahdY3uHPftI2B9K8xLVhxVkozv62eYMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\Survivorapp\\SurvivorApp.csproj",
+  "projectFilePath": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\SurvivorApp\\SurvivorApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Wodinaz\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.1\\microsoft.aspnetcore.authorization.7.0.1.nupkg.sha512",
     "C:\\Users\\Wodinaz\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.1\\microsoft.aspnetcore.components.7.0.1.nupkg.sha512",

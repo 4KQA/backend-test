@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\Survivorapp\\SurvivorApp.csproj": {}
+    "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\SurvivorApp\\SurvivorApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\Survivorapp\\SurvivorApp.csproj": {
+    "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\SurvivorApp\\SurvivorApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\Survivorapp\\SurvivorApp.csproj",
+        "projectUniqueName": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\SurvivorApp\\SurvivorApp.csproj",
         "projectName": "SurvivorApp",
-        "projectPath": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\Survivorapp\\SurvivorApp.csproj",
+        "projectPath": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\SurvivorApp\\SurvivorApp.csproj",
         "packagesPath": "C:\\Users\\Wodinaz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\Survivorapp\\obj\\",
+        "outputPath": "C:\\Users\\Wodinaz\\Programming\\AKQA-test\\Survivor\\backend-test\\SurvivorApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Wodinaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
