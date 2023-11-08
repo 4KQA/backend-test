@@ -1,0 +1,69 @@
+﻿@using SurvivorApp.Models;
+@using SurvivorApp.Services;
+@page "/addperson"
+@inject PersonService personService;
+@inject IConfiguration configuration;
+
+<PageTitle>CreatePerson</PageTitle>
+
+
+<h1>Create new person</h1>
+
+
+
+
+<table>
+
+    <tr>
+        <td>First name </td>
+        <td>Last name </td>
+    </tr>
+    <tr>
+        <td><input type="text" @bind-value="@createPerson.FirstName" /></td>
+        <td><input type="text" @bind-value="@createPerson.LastName" /></td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>Gender</td>
+    </tr>
+        <tr>
+        <td><input type="text" @bind-value="@createPerson.Age" /></td>
+        <td><input type="text" @bind-value="@createPerson.Gender" /></td>
+    </tr>
+    <tr>
+        <td>Last Latitude</td>
+        <td>Last Longitude</td>
+    </tr>
+    <tr>
+        <td><input type="text" @bind-value="@createPerson.LastLatitude" /></td>
+        <td><input type="text" @bind-value="@createPerson.LastLongitude" /></td>
+    </tr>
+    <tr>
+        <td>Alive status</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" @bind-value="@createPerson.Alive" /></td>
+        <td><input type="button" value="Create Person" @onclick="@PostPerson" /></td>
+    </tr>
+
+
+
+</table>
+
+
+
+
+@code {
+
+    private Person createPerson = new("", "", 0, "", 0, 0, false);
+    
+
+    async Task PostPerson()
+    {
+        createPerson.Id = 0;
+        Console.WriteLine(createPerson.Alive);
+        await personService.CreatePerson(createPerson);
+
+    }
+}

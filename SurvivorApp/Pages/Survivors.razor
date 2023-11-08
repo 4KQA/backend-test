@@ -6,23 +6,24 @@
 
 
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Survivors</PageTitle>
 
 <h1>Showing Survivors</h1>
 
 <input type="text" @bind-value="@searchLastName" />
 <input type="button" value="Search" @onclick="@SearchSurvivors" />
-<input type="button" value="Search" @onclick="@GetPersons" />
+<input type="button" value="Reset" @onclick="@GetPersons" />
 
 <table>
     <tr>
-        <td style="width:15%">FirstName</td>
-        <td style="width:15%">LastName</td>
-        <td style="width:10%">Age</td>
-        <td style="width:10%">Gender</td>
-        <td style="width:10%">LastLat</td>
-        <td style="width:10%">LastLong</td>
-        <td style="width:10%">Alive</td>
+        <th style="width:5%">ID</th>
+        <th style="width:15%">FirstName</th>
+        <th style="width:15%">LastName</th>
+        <th style="width:10%">Age</th>
+        <th style="width:10%">Gender</th>
+        <th style="width:10%">LastLat</th>
+        <th style="width:10%">LastLong</th>
+        <th style="width:10%">Alive</th>
     </tr>
 
     @if (Persons == null)
@@ -35,6 +36,7 @@
         @foreach (var person in Persons)
         {
             <tr>
+                <td>@person.Id</td>
                 <td>@person.FirstName</td>
                 <td>@person.LastName</td>
                 <td>@person.Age</td>
