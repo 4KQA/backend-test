@@ -1,0 +1,57 @@
+﻿@using SurvivorApp.Models;
+@using SurvivorApp.Services;
+@page "/updateperson"
+@inject PersonService personService;
+@inject IConfiguration configuration;
+
+<PageTitle>UpdatePerson</PageTitle>
+
+
+<h1>Update persons last known whereabouts by ID</h1>
+
+
+
+
+<table>
+    <tr>
+        <th style="width:20%">ID</th>
+        <th style="width:20%">Last known latitude</th>
+        <th style="width:20%">Last known longitude</th>
+        <th style="width:20%">Alive bool</th>
+    </tr>
+
+    <tr>
+        <td><input type="text" @bind-value="@updatePerson.Id" /></td>
+        <td><input type="text" @bind-value="@updatePerson.LastLatitude" /></td>
+        <td><input type="text" @bind-value="@updatePerson.LastLongitude" /></td>
+        <td><input type="checkbox" @bind-value="@updatePerson.Alive" /></td>
+    </tr>
+</table>
+
+<input type="button" value="Update Person" @onclick="@UpdatePersonInfo" />
+<div>@confirmationMessage</div>
+
+
+
+@code {
+
+
+    private Person updatePerson = new("", "", -1, "", -1, -1, false);
+    private string confirmationMessage = "";
+
+    async Task UpdatePersonInfo()
+    {
+
+        try
+        {
+            await personService.UpdatePerson(updatePerson);
+            confirmationMessage = "Person updated!";
+        }
+        catch{
+            confirmationMessage = "Update failed!";
+        }
+
+
+
+}
+}

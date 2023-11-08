@@ -1,0 +1,38 @@
+﻿@using SurvivorApp.Models;
+@using SurvivorApp.Services;
+@page "/survivalrate"
+@inject PersonService personService;
+@inject IConfiguration configuration;
+
+<PageTitle>Survival Rate</PageTitle>
+
+<h1>Survival Rate</h1>
+
+<p>Showing the current rate of survival in registered people</p>
+
+@if (survivalRate == -1)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h1>@Math.Round(survivalRate, 2) %</h1>
+}
+
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetSurvivalRate();
+
+    }
+    private double survivalRate = -1;
+
+    async Task GetSurvivalRate()
+    {
+        survivalRate = await personService.GetSurvivalRate();
+
+    }
+}

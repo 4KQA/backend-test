@@ -1,0 +1,79 @@
+﻿@using SurvivorApp.Models;
+@using SurvivorApp.Services;
+@page "/survivors"
+@inject PersonService personService;
+@inject IConfiguration configuration;
+
+
+
+<PageTitle>Survivors</PageTitle>
+
+<h1>Showing Survivors</h1>
+
+<input type="text" @bind-value="@searchLastName" />
+<input type="button" value="Search by last name" @onclick="@SearchSurvivors" />
+<input type="button" value="Show all persons" @onclick="@GetPersons" />
+
+<table>
+    <tr>
+        <th style="width:5%">ID</th>
+        <th style="width:15%">FirstName</th>
+        <th style="width:15%">LastName</th>
+        <th style="width:10%">Age</th>
+        <th style="width:10%">Gender</th>
+        <th style="width:10%">LastLat</th>
+        <th style="width:10%">LastLong</th>
+        <th style="width:10%">Alive</th>
+    </tr>
+
+    @if (Persons == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        @foreach (var person in Persons)
+        {
+            <tr>
+                <td>@person.Id</td>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.Age</td>
+                <td>@person.Gender</td>
+                <td>@person.LastLatitude</td>
+                <td>@person.LastLongitude</td>
+                <td>@person.Alive</td>
+            </tr>
+        }
+    }
+
+</table>
+
+
+@code {
+
+
+    private List<Person>? Persons;
+
+    private string searchLastName = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetPersons();
+
+    }
+
+    async Task SearchSurvivors()
+    {
+        Persons = await personService.GetPersonsLastName(searchLastName);
+
+    }
+
+    async Task GetPersons()
+    {
+        Persons = await personService.GetPersons();
+
+    }
+
+
+}
