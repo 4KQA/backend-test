@@ -37,12 +37,12 @@ public class SurvivorController : ControllerBase
 
     [EnableCors]
     [HttpPost]
-    public async Task<PersonDTO> PostPerson(string firstName, string lastName, int age, string gender, double lastLatitude, double lastLongitude, bool alive)
-        => await _personRepository.CreatePerson(new PersonDTO(firstName, lastName, age, gender, lastLatitude, lastLongitude, alive));
+    public async Task<PersonDTO> PostPerson(PersonDTO person)
+        => await _personRepository.CreatePerson(person);
 
     [EnableCors]
     [HttpPut]
-    public async Task<PersonDTO> UpdatePerson(int id, double lastLatitude, double lastLongitude, bool alive)
-        => await _personRepository.UpdatePerson(id, lastLatitude, lastLongitude, alive);
+    public async Task<PersonDTO> UpdatePerson(PersonDTO person)
+        => await _personRepository.UpdatePerson(person);
 
 }

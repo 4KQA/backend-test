@@ -81,17 +81,17 @@ namespace SurvivorAPI.Services
         }
 
 
-        public async Task<PersonDTO> UpdatePerson(int id, double lastLatitude, double lastLongitude, bool alive)
+        public async Task<PersonDTO> UpdatePerson(PersonDTO person)
         {
             using var db = new PersonContext();
 
-            PersonDTO tmpPersonDTO = await db.PersonDTOs.FirstAsync(p => p.Id == id);
+            PersonDTO tmpPersonDTO = await db.PersonDTOs.FirstAsync(p => p.Id == person.Id);
 
-            if (Math.Sign(lastLatitude) != Math.Sign(tmpPersonDTO.LastLatitude))
+            if (Math.Sign(person.LastLatitude) != Math.Sign(tmpPersonDTO.LastLatitude))
             {
                 throw new InvalidDataException("You cannot move from one hemisphere to another, they've become semispheres!");
             }
-            else if (lastLatitude == 0)
+            else if (person.LastLatitude == 0)
             {
 
                 throw new InvalidDataException("Equator quite literally does not exist, you cannot be here!");
@@ -99,9 +99,9 @@ namespace SurvivorAPI.Services
             }
             else
             {
-                tmpPersonDTO.LastLatitude = Math.Round(lastLatitude, 5);
-                tmpPersonDTO.LastLongitude = Math.Round(lastLongitude, 5);
-                tmpPersonDTO.Alive = alive;
+                tmpPersonDTO.LastLatitude = Math.Round(person.LastLatitude, 5);
+                tmpPersonDTO.LastLongitude = Math.Round(person.LastLongitude, 5);
+                tmpPersonDTO.Alive = person.Alive;
             }
 
             await db.SaveChangesAsync();
