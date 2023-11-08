@@ -41,5 +41,13 @@ public class PersonService
         return await http.GetFromJsonAsync<List<Person>>(url);
     }
 
+     public async Task<double> GetSurvivalRate()
+    {
+        string url = $"{baseAPI}survival";
+        Console.WriteLine("Base API: " + baseAPI);
+        Console.WriteLine("Base URL: " + url);
+        return await http.GetFromJsonAsync<double>(url);
+    }
+
     
 }

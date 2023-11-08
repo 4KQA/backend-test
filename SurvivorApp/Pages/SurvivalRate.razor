@@ -1,57 +1,38 @@
-﻿@page "/survivalrate"
-@inject HttpClient Http
+﻿@using SurvivorApp.Models;
+@using SurvivorApp.Services;
+@page "/survivalrate"
+@inject PersonService personService;
+@inject IConfiguration configuration;
 
 <PageTitle>Weather forecast</PageTitle>
 
-<h1>Weather forecast</h1>
+<h1>Survival Rate</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>Showing the current rate of survival in registered people</p>
 
-@if (forecasts == null)
+@if (survivalRate == -1)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <h1>@Math.Round(survivalRate, 2) %</h1>
 }
 
+
+
 @code {
-    private WeatherForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        await GetSurvivalRate();
+
     }
+    private double survivalRate = -1;
 
-    public class WeatherForecast
+    async Task GetSurvivalRate()
     {
-        public DateOnly Date { get; set; }
+        survivalRate = await personService.GetSurvivalRate();
 
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 }

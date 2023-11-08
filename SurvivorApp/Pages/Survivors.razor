@@ -11,7 +11,8 @@
 <h1>Showing Survivors</h1>
 
 <input type="text" @bind-value="@searchLastName" />
-<input type="button" value="Search" @onclick="@SearchSurvivors"/>
+<input type="button" value="Search" @onclick="@SearchSurvivors" />
+<input type="button" value="Search" @onclick="@GetPersons" />
 
 <table>
     <tr>
@@ -50,20 +51,27 @@
 
 @code {
 
-  
+
     private List<Person>? Persons;
-    
-    private string searchLastName;
+
+    private string searchLastName = "";
 
     protected override async Task OnInitializedAsync()
     {
+        await GetPersons();
 
-        Persons = await personService.GetPersons();
     }
 
-    async Task SearchSurvivors(){
+    async Task SearchSurvivors()
+    {
         Persons = await personService.GetPersonsLastName(searchLastName);
-        
+
+    }
+
+    async Task GetPersons()
+    {
+        Persons = await personService.GetPersons();
+
     }
 
 
