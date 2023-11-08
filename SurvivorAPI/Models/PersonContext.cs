@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SurvivorAPI.Models
 {
+    //Class to handle context for EF database setup
     public class PersonContext : DbContext
     {
         public DbSet<PersonDTO> PersonDTOs { get; set; }

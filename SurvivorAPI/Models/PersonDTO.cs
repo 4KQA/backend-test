@@ -1,14 +1,10 @@
 namespace SurvivorAPI.Models
 
 {
+
+    //Class to handle Person data
     public class PersonDTO
     {
-
-        /*public PersonDTO()
-        {
-
-        }*/
-
         public PersonDTO(string firstName, string lastName, int age, string gender, double lastLatitude, double lastLongitude, bool alive)
         {
             FirstName = firstName;

@@ -4,7 +4,6 @@ using SurvivorAPI.Controllers;
 using SurvivorAPI.Models;
 
 
-
 namespace SurvivorAPI.Services
 {
     public class PersonServiceEF : IPersonRepository
@@ -19,25 +18,20 @@ namespace SurvivorAPI.Services
 
         public async Task<List<PersonDTO>> ReadPersons()
         {
-
-
             using var db = new PersonContext();
 
             List<PersonDTO> personDTOs = await db.PersonDTOs.ToListAsync();
             if (personDTOs.Count == 0)
             {
-
                 for (int i = 0; i < 5; i++)
                 {
 
                     PersonDTO tmpPerson = new("SeedFirstName" + i, "SeedLastName" + i, 20 + i, "SeedGender" + i, 21.12345 - 10 * i, 30.11111 - 11.1 * i, i % 2 == 0);
                     await CreatePerson(tmpPerson);
                 }
-                
                 await db.SaveChangesAsync();
                 personDTOs = await db.PersonDTOs.ToListAsync();
             }
-
             return personDTOs;
 
         }

@@ -26,12 +26,12 @@ public class SurvivorController : ControllerBase
     public async Task<List<PersonDTO>> GetPersons() => await _personRepository.ReadPersons();
 
     [EnableCors]
-    [HttpGet("lastname")]
+    [HttpGet("Lastname")]
     public async Task<List<PersonDTO>> GetPersonsLastName(string lastName)
         => await _personRepository.ReadPersonsLastName(lastName);
 
     [EnableCors]
-    [HttpGet("survival")]
+    [HttpGet("Survival")]
     public async Task<double> GetSurvivalRate()
         => await _personRepository.ReadSurvivalRate();
 

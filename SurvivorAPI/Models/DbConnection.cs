@@ -6,6 +6,7 @@ namespace SurvivorAPI.Models
 {
     public class DbConnection
     {
+        //Håndterer injection af Database service baseret på connectionString - Her hardcoded til lokal EF database" 
         public DbConnection(WebApplicationBuilder builder){
 
             if (connectionString == null)
