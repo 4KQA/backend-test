@@ -46,7 +46,7 @@ namespace SurvivorAPI.Services
         {
 
             using var db = new PersonContext();
-            return await db.PersonDTOs.Where(p => p.LastName.ToLower() == lastName.ToLower()).ToListAsync();
+            return await db.PersonDTOs.Where(p => p.LastName.ToLower().Contains(lastName.ToLower())).ToListAsync();
 
         }
 
