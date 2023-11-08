@@ -13,7 +13,7 @@
 
 
 <table>
-     <tr>
+    <tr>
         <th style="width:20%">ID</th>
         <th style="width:20%">Last known latitude</th>
         <th style="width:20%">Last known longitude</th>
@@ -34,16 +34,24 @@
 
 
 @code {
-  
 
-  private Person updatePerson = new("", "", -1, "", -1, -1, false);
-  private string confirmationMessage = "";
-  
-  async Task UpdatePersonInfo()
+
+    private Person updatePerson = new("", "", -1, "", -1, -1, false);
+    private string confirmationMessage = "";
+
+    async Task UpdatePersonInfo()
     {
 
-        await personService.UpdatePerson(updatePerson);
-        confirmationMessage = "Person updated!";
+        try
+        {
+            await personService.UpdatePerson(updatePerson);
+            confirmationMessage = "Person updated!";
+        }
+        catch{
+            confirmationMessage = "Update failed!";
+        }
 
-    }
+
+
+}
 }
